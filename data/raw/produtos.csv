@@ -1,0 +1,34 @@
+id_produto,nome_produto,categoria,preco
+101,Camiseta Básica,ROUPAS,49.9
+102,Calça Jeans,ROUPAS,129.9
+103,Tênis Esportivo,calçados,199.9
+104,Mochila Escolar,Acessórios,89.9
+105,Boné Aba Reta,ACESSÓRIOS,39.9
+106,Jaqueta Couro,ROUPAS,349.9
+107,Sandália Rasteira,CALÇADOS,59.9
+108,Relógio Digital,Acessórios,159.9
+109,Bermuda Sarja,ROUPAS,
+110,Meia Esportiva,Roupas,19.9
+111,Óculos de Sol,Acessórios,149.9
+112,Vestido Floral,ROUPAS,119.9
+113,Bota de Couro,CALÇADOS,249.9
+114,Carteira Masculina,Acessórios,69.9
+115,Blusa Moletom,ROUPAS,99.9
+116,Chinelo Slide,CALÇADOS,34.9
+117,Cinto de Couro,Acessórios,59.9
+118,Camisa Social,Roupas,109.9
+119,Sapatênis Casual,calçados,179.9
+120,Pulseira Aço,Acessórios,45.9
+121,Short Fitness,Roupas,
+122,Tênis Casual,CALÇADOS,159.9
+123,Bolsa Feminina,ACESSÓRIOS,139.9
+124,Polo Básica,roupas,69.9
+125,Papete Confort,calçados,74.9
+126,Anel Prata,acessórios,89.9
+127,Regata Fitness,Roupas,34.9
+128,Alpargata Lona,Calçados,
+129,Chapéu Panamá,Acessórios,79.9
+130,Calça Moletom,ROUPAS,89.9
+131,Calça Jeans,ROUPAS,129.9
+132,Jaqueta Couro,ROUPAS,349.9
+133,Vestido Floral,ROUPAS,119.9

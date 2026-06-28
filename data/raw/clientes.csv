@@ -1,0 +1,66 @@
+id_cliente,nome,email,cidade,estado
+38,Vanessa Campos,vanessa.campos@email.com,,RJ
+59,Tiago Magalhães,tiago.magalhaes@email.com,São Paulo,SP
+29,André Cavalcanti,andre.cavalcanti@email.com,Florianópolis,SC
+52,RAQUEL assis,raquel.assis@email.com,Belo Horizonte,MG
+23,Felipe Cardoso,felipe.cardoso@email.com,Florianópolis,SC
+55,Marcos Batista,,Brasília,DF
+64,VINÍCIUS MONTEIRO,vinicius.monteiro@email.com,Fortaleza,CE
+36,aline machado,aline.machado@email.com,Maceió,AL
+56,Simone Aguiar,simone.aguiar@email.com,Belém,PA
+15,Bruno Carvalho,bruno.carvalho@email.com,Vitória,ES
+4,Ana Costa,ana.costa@email.com,Maceió,AL
+50,cláudia miranda,claudia.miranda@email.com,,CE
+43,Ricardo Prado,ricardo.prado@email.com,Vitória,ES
+14,larissa nunes,larissa.nunes@email.com,Recife,PE
+61,João Silva,joao.silva@email.com,São Paulo,SP
+9,RAFAEL ALMEIDA,rafael.almeida@email.com,Maceió,AL
+6,FERNANDA LIMA,fernanda.lima@email.com,Belo Horizonte,MG
+22,Letícia Melo,leticia.melo@email.com,,MT
+25,VINÍCIUS MONTEIRO,vinicius.monteiro@email.com,Fortaleza,CE
+37,ROBERTO FONSECA,roberto.fonseca@email.com,Vitória,ES
+5,LUCAS PEREIRA,,Brasília,DF
+18,Isabela Araújo,isabela.araujo@email.com,Rio de Janeiro,RJ
+26,Gabriela Nascimento,gabriela.nascimento@email.com,Belo Horizonte,MG
+16,PATRÍCIA GOMES,patricia.gomes@email.com,Belém,PA
+46,SANDRA BRITO,sandra.brito@email.com,Salvador,BA
+27,Leonardo Pinto,,Curitiba,PR
+3,PEDRO SANTOS,pedro.santos@email.com,Curitiba,PR
+62,Maria Oliveira,maria.oliveira@email.com,Fortaleza,CE
+31,HENRIQUE DUARTE,henrique.duarte@email.com,Manaus,AM
+40,Cristiane Azevedo,cristiane.azevedo@email.com,Belém,PA
+45,guilherme sampaio,guilherme.sampaio@email.com,Campinas,SP
+48,ADRIANA coutinho,adriana.coutinho@email.com,João Pessoa,PB
+42,Mônica Siqueira,monica.siqueira@email.com,João Pessoa,PB
+63,Thiago Ferreira,thiago.ferreira@email.com,São Paulo,SP
+2,Maria Oliveira,maria.oliveira@email.com,Fortaleza,CE
+32,Priscila Vieira,priscila.vieira@email.com,Belo Horizonte,MG
+21,RODRIGO DIAS,rodrigo.dias@email.com,Goiânia,GO
+58,JÉSSICA andrade,jessica.andrade@email.com,Maceió,AL
+34,TATIANA ramos,tatiana.ramos@email.com,Fortaleza,CE
+65,Cristiane Azevedo,cristiane.azevedo@email.com,Belém,PA
+60,Débora Moura,debora.moura@email.com,Curitiba,PR
+24,Amanda Teixeira,amanda.teixeira@email.com,Belo Horizonte,MG
+10,beatriz souza,beatriz.souza@email.com,Campinas,SP
+13,Diego Martins,,Vitória,ES
+39,FÁBIO REZENDE,fabio.rezende@email.com,Rio de Janeiro,RJ
+51,Otávio Guimarães,otavio.guimaraes@email.com,Salvador,BA
+53,Sérgio Lacerda,sergio.lacerda@email.com,Curitiba,PR
+20,DANIELA CASTRO,daniela.castro@email.com,Belém,PA
+41,alexandre borges,,Recife,PE
+7,CARLOS MENDES,carlos.mendes@email.com,Campo Grande,MS
+54,NATÁLIA FIGUEIREDO,natalia.figueiredo@email.com,Porto Alegre,RS
+12,Camila Ribeiro,camila.ribeiro@email.com,Porto Alegre,RS
+49,leandro xavier,leandro.xavier@email.com,João Pessoa,PB
+33,Marcelo Freitas,marcelo.freitas@email.com,Porto Alegre,RS
+17,GUSTAVO BARBOSA,gustavo.barbosa@email.com,Florianópolis,SC
+57,caio esteves,caio.esteves@email.com,Campinas,SP
+47,PAULO TAVARES,paulo.tavares@email.com,Maceió,AL
+1,João Silva,joao.silva@email.com,São Paulo,SP
+30,RENATA LOPES,renata.lopes@email.com,Florianópolis,SC
+11,Thiago Ferreira,thiago.ferreira@email.com,São Paulo,SP
+28,mariana moreira,mariana.moreira@email.com,Campinas,SP
+19,Matheus Correia,matheus.correia@email.com,Maceió,AL
+8,Juliana Rocha,juliana.rocha@email.com,,AL
+44,ELAINE NOGUEIRA,elaine.nogueira@email.com,Natal,RN
+35,EDUARDO CUNHA,eduardo.cunha@email.com,Belém,PA
