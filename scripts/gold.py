@@ -16,37 +16,36 @@ def conectar_banco():
 
 
 def faturamento_total():
-    df_faturamento_total = df_vendas.select(pl.sum("valor_total").alias("faturamento_total"))
-    return df_faturamento_total
+    return df_vendas.select(
+        pl.sum("valor_total").round(2).alias("faturamento_total")
+    )
 
 def faturamento_por_mes():
-    df_faturamento_mes = df_vendas.group_by(
+    return df_vendas.group_by(
         pl.col("data_venda").dt.year().alias("ano"),
         pl.col("data_venda").dt.month().alias("mes")
     ).agg(
-        pl.sum("valor_total").alias("faturamento_total")
+        pl.sum("valor_total").round(2).alias("faturamento_total")
     ).sort("ano", "mes")
-    return df_faturamento_mes
 
 def top_10_clientes():
-    df_top_clientes = df_vendas.group_by(
+    return df_vendas.group_by(
         pl.col("id_cliente")
     ).agg(
-        pl.sum("valor_total").alias("total_gasto")
+        pl.sum("valor_total").round(2).alias("total_gasto")
     ).join(
         df_clientes, on="id_cliente", how="left"
     ).select(
         "nome", "total_gasto"
     ).sort(
-        "total_gasto",descending=True
+        "total_gasto", descending=True
     ).head(10)
-    return df_top_clientes
 
 def top_10_produtos():
-    df_top_produtos = df_vendas.group_by(
+    return df_vendas.group_by(
         pl.col("id_produto")
     ).agg(
-        pl.sum("valor_total").alias("total_vendido")
+        pl.sum("valor_total").round(2).alias("total_vendido")
     ).join(
         df_produtos, on="id_produto", how="left"
     ).select(
@@ -54,37 +53,42 @@ def top_10_produtos():
     ).sort(
         "total_vendido", descending=True
     ).head(10)
-    return df_top_produtos
 
 def ticket_medio():
-    df_ticket_medio = df_vendas.select(
+    return df_vendas.select(
         pl.count("id_venda").alias("total_vendas"),
-        pl.sum("valor_total").alias("faturamento_total"),
-        pl.mean("valor_total").alias("ticket_medio")
+        pl.sum("valor_total").round(2).alias("faturamento_total"),
+        pl.mean("valor_total").round(2).alias("ticket_medio")
     )
-    return df_ticket_medio
+
 
 
 def main():
+    print("=" * 50)
+    print("CAMADA GOLD - Métricas de negócio")
+    print("=" * 50)
+
+    print("Conectando ao PostgreSQL...")
     engine = conectar_banco()
-    
-    df_fat_total = faturamento_total()
-    df_fat_total.write_database("faturamento_total", connection=engine, if_table_exists="replace")
 
-    df_fat_mensal = faturamento_por_mes()
-    df_fat_mensal.write_database("faturamento_mensal", connection=engine, if_table_exists="replace")
+    print("Calculando faturamento total...")
+    faturamento_total().write_database("faturamento_total", connection=engine, if_table_exists="replace")
 
-    df_top_clientes = top_10_clientes()
-    df_top_clientes.write_database("top_clientes", connection=engine, if_table_exists="replace")
+    print("Calculando faturamento por mês...")
+    faturamento_por_mes().write_database("faturamento_mensal", connection=engine, if_table_exists="replace")
 
-    df_top_produtos = top_10_produtos()
-    df_top_produtos.write_database("top_produtos", connection=engine, if_table_exists="replace")
+    print("Calculando top 10 clientes...")
+    top_10_clientes().write_database("top_clientes", connection=engine, if_table_exists="replace")
 
-    df_ticket_med = ticket_medio()
-    df_ticket_med.write_database("ticket_medio", connection=engine, if_table_exists="replace")
+    print("Calculando top 10 produtos...")
+    top_10_produtos().write_database("top_produtos", connection=engine, if_table_exists="replace")
+
+    print("Calculando ticket médio...")
+    ticket_medio().write_database("ticket_medio", connection=engine, if_table_exists="replace")
 
     engine.dispose()
+    print("\nCamada Gold finalizada com sucesso!")
+
 
 if __name__ == "__main__":
     main()
-

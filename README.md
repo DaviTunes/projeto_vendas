@@ -7,6 +7,8 @@ Pipeline de dados com arquitetura medalhão (Bronze → Silver → Gold) usando 
 - Python 3.12
 - Polars — transformações de dados nas camadas Bronze e Silver
 - PostgreSQL — armazenamento da camada Gold
+- Docker — container para o banco de dados
+- SQLAlchemy — conexão Python ↔ PostgreSQL
 - Parquet — formato intermediário entre camadas
 
 ## Arquitetura
@@ -17,7 +19,7 @@ CSV (raw) → [ingestao.py] → Parquet (bronze) → [silver.py] → Parquet (si
 
 **Bronze:** dados brutos sem nenhuma transformação, apenas convertidos de CSV para Parquet.
 
-**Silver:** dados limpos e padronizados — remoção de duplicatas, tratamento de nulos, padronização de texto e conversão de tipos.
+**Silver:** dados limpos e padronizados — remoção de duplicatas, tratamento de nulos, padronização de texto, conversão de tipos e criação da coluna `valor_total`.
 
 **Gold:** métricas de negócio agregadas — faturamento total, faturamento por mês, top 10 clientes, top 10 produtos e ticket médio.
 
@@ -37,6 +39,9 @@ projeto_vendas/
 │   ├── ingestao.py     ← Camada Bronze
 │   ├── silver.py       ← Camada Silver
 │   └── gold.py         ← Camada Gold
+├── run_pipeline.py     ← Executa todo o pipeline em ordem
+├── .env                ← Credenciais do banco (não versionado)
+├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
@@ -46,9 +51,9 @@ projeto_vendas/
 ### Pré-requisitos
 
 - Python 3.10 ou superior
-- PostgreSQL instalado e rodando (necessário apenas para a camada Gold)
+- Docker instalado e rodando
 
-### Instalação
+### 1. Clonar e configurar o ambiente
 
 ```bash
 git clone https://github.com/seu-usuario/projeto_vendas.git
@@ -75,9 +80,33 @@ Instalar dependências:
 pip install -r requirements.txt
 ```
 
-### Executando o Pipeline
+### 2. Subir o banco de dados
 
-Os scripts devem ser executados nesta ordem, a partir da raiz do projeto:
+```bash
+docker run --name db_projeto_vendas_medalion -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=projeto_vendas -p 5432:5432 -d postgres
+```
+
+### 3. Configurar as credenciais
+
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=projeto_vendas
+DB_USER=postgres
+DB_PASSWORD=1234
+```
+
+### 4. Executar o pipeline
+
+Para rodar todo o pipeline de uma vez:
+
+```bash
+python run_pipeline.py
+```
+
+Ou executar cada camada individualmente:
 
 ```bash
 # 1. Camada Bronze — ingestão dos CSVs para Parquet
@@ -100,13 +129,23 @@ Os CSVs em `data/raw/` possuem problemas de qualidade propositais para exercitar
 | Valores nulos | emails, cidades, preços, quantidades |
 | Texto com caixa inconsistente | nomes de clientes, categorias de produtos |
 
+## Tratamentos Aplicados (Camada Silver)
+
+| Tabela | Tratamento |
+|---|---|
+| clientes | Nulos preenchidos (email, cidade), duplicatas removidas, texto em maiúsculo |
+| produtos | Nulos preenchidos (preço), duplicatas removidas, texto em maiúsculo |
+| vendas | Nulos removidos (quantidade), duplicatas removidas, data convertida, `valor_total` criado |
+
 ## Métricas Geradas (Camada Gold)
 
-- Faturamento total
-- Faturamento por mês
-- Top 10 clientes por valor comprado
-- Top 10 produtos mais vendidos
-- Ticket médio das vendas
+| Tabela no PostgreSQL | Descrição |
+|---|---|
+| faturamento_total | Soma de todas as vendas |
+| faturamento_mensal | Faturamento agrupado por ano e mês |
+| top_clientes | Top 10 clientes por valor gasto |
+| top_produtos | Top 10 produtos por valor vendido |
+| ticket_medio | Total de vendas, faturamento e ticket médio |
 
 ## Autor
 
