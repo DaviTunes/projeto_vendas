@@ -88,14 +88,14 @@ docker run --name db_projeto_vendas_medalion -e POSTGRES_PASSWORD=1234 -e POSTGR
 
 ### 3. Configurar as credenciais
 
-Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+Crie um arquivo `.env` na raiz do projeto com o seguinte formato:
 
 ```
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=projeto_vendas
-DB_USER=postgres
-DB_PASSWORD=1234
+DB_HOST=seu_host
+DB_PORT=sua_porta
+DB_NAME=seu_banco
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
 ```
 
 ### 4. Executar o pipeline
