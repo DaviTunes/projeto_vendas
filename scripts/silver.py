@@ -19,6 +19,9 @@ def tratar_clientes():
     df = df.with_columns(
         pl.col("cidade").fill_null("NAO INFORMADO")
     )
+    df = df.filter(
+        pl.col("nome").is_not_null()
+    )
     df = df.unique(subset=["nome", "email", "cidade", "estado"])
     df = df.with_columns(
         pl.col("nome", "cidade", "estado").str.to_uppercase(),
@@ -55,6 +58,7 @@ def tratar_produtos():
 
 def tratar_vendas():
     file = "vendas.parquet"
+    file2 = "clientes.parquet"
     print(f"Tratando {file}...")
 
     df = pl.read_parquet(bronze_path + "/" + file)
@@ -65,6 +69,12 @@ def tratar_vendas():
     df = df.with_columns(
         pl.col("data_venda").str.to_date(),
     )
+    df = df.join(
+        pl.read_parquet(silver_path + "/" + file2).select("id_cliente"),
+        on="id_cliente",
+        how="inner"
+    )
+
     df = df.with_columns(
         (pl.col("quantidade") * pl.col("preco_unitario")).round(2).alias("valor_total")
     )
